@@ -1,0 +1,42 @@
+[
+  {
+    "id_cliente": "CL01",
+    "nombre": "Juan Pérez",
+    "apellidos": "López",
+    "DNI": "123456789",
+    "contacto": "juan.lopez@email.com",
+    "puntos": 50
+  },
+  {
+    "id_cliente": "CL02",
+    "nombre": "María García",
+    "apellidos": "Sánchez",
+    "DNI": "987654321",
+    "contacto": "maria.sanchez@email.com",
+    "puntos": 150
+  },
+  {
+    "id_cliente": "CL03",
+    "nombre": "Pedro González",
+    "apellidos": "Rodríguez",
+    "DNI": "876543210",
+    "contacto": "pedro.rodriguez@email.com",
+    "puntos": null
+  },
+  {
+    "id_cliente": "CL04",
+    "nombre": "Ana Fernández",
+    "apellidos": "Martínez",
+    "DNI": "765432109",
+    "contacto": "ana.martinez@email.com",
+    "puntos": 250
+  },
+  {
+    "id_cliente": "CL05",
+    "nombre": "Carlos López",
+    "apellidos": "Vega",
+    "DNI": "765432109",
+    "contacto": "ana.martinez@email.com",
+    "puntos": null
+  }
+]

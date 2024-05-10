@@ -1,0 +1,72 @@
+[
+  {
+    "id_puntos": "DP01",
+    "cantidad": 150,
+    "valor_descuento": 5,
+    "fecha_inicio": "2024-04-15",
+    "fecha_fin": "2024-04-28"
+  },
+  {
+    "id_puntos": "DP02",
+    "cantidad": 100,
+    "valor_descuento": 15,
+    "fecha_inicio": "2024-03-01",
+    "fecha_fin": "2024-03-11"
+  },
+  {
+    "id_puntos": "DP03",
+    "cantidad": 200,
+    "valor_descuento": 35,
+    "fecha_inicio": "2024-02-14",
+    "fecha_fin": "2024-02-15"
+  },
+  {
+    "id_puntos": "DP04",
+    "cantidad": 100,
+    "valor_descuento": 15,
+    "fecha_inicio": "2024-02-01",
+    "fecha_fin": "2024-02-28"
+  },
+  {
+    "id_puntos": "DP05",
+    "cantidad": 115,
+    "valor_descuento": 10,
+    "fecha_inicio": "2024-04-01",
+    "fecha_fin": "2024-05-15"
+  },
+  {
+    "id_puntos": "DP06",
+    "cantidad": 100,
+    "valor_descuento": 50,
+    "fecha_inicio": "2023-12-24",
+    "fecha_fin": "2023-12-31"
+  },
+  {
+    "id_puntos": "DP07",
+    "cantidad": 100,
+    "valor_descuento": 25,
+    "fecha_inicio": "2023-12-31",
+    "fecha_fin": "2024-01-07"
+  },
+  {
+    "id_puntos": "DP08",
+    "cantidad": 200,
+    "valor_descuento": 15,
+    "fecha_inicio": "2024-01-01",
+    "fecha_fin": "2024-01-31"
+  },
+  {
+    "id_puntos": "DP09",
+    "cantidad": 100,
+    "valor_descuento": 15,
+    "fecha_inicio": "2024-03-20",
+    "fecha_fin": "2024-04-01"
+  },
+  {
+    "id_puntos": "DP10",
+    "cantidad": 150,
+    "valor_descuento": 30,
+    "fecha_inicio": "2024-03-01",
+    "fecha_fin": "2024-04-31"
+  }
+]

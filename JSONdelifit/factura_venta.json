@@ -1,0 +1,211 @@
+[
+  {
+    "id_facturaVenta": "FV01",
+    "id_usuario": "UU01",
+    "id_cliente": "CL01",
+    "subtotal": 33.00,  
+    "descuento": 10.00,  
+    "descuento_puntos": 2.50,  
+    "igv": 6.06, 
+    "total": 26.56,
+    "detalles_venta": [
+      {
+        "id_facturaVenta": "FV01",
+        "cod_producto": "10",
+        "cantidad": 2,
+        "precio_unit": 10.00,
+        "total_unit": 20.00
+      },
+      {
+        "id_facturaVenta": "FV01",
+        "cod_producto": "14",
+        "cantidad": 1,
+        "precio_unit": 13.00,
+        "total_unit": 13.00
+      }
+    ],
+    "promociones": [
+      {
+        "id_promocion": "PR02",
+        "nom_promocion": "Lunes de Hotcakes",
+        "titpo_promocion": "FIJO",
+        "dsc_promocion": 2.00,
+        "fecha_inicio": "2024-04-28",
+        "fecha_fin": "2024-04-28"
+      }
+    ]
+  },
+  {
+    "id_facturaVenta": "FV02",
+    "id_usuario": "UU02",
+    "id_cliente": "CL02",
+    "subtotal": 39.00, 
+    "descuento": 7.80, 
+    "descuento_puntos": 2.40,
+    "igv": 7.02,
+    "total": 43.22,
+    "detalles_venta": [
+      {
+        "id_facturaVenta": "FV02",
+        "cod_producto": "11",
+        "cantidad": 2,
+        "precio_unit": 12.00,
+        "total_unit": 24.00
+      },
+      {
+        "id_facturaVenta": "FV02",
+        "cod_producto": "12",
+        "cantidad": 1,
+        "precio_unit": 15.00,
+        "total_unit": 15.00
+      }
+    ],
+    "promociones": [
+      {
+        "id_promocion": "PR05",
+        "nom_promocion": "Viernes de Yogurt",
+        "titpo_promocion": "%",
+        "dsc_promocion": 0.2,
+        "fecha_inicio": "2024-05-03",
+        "fecha_fin": "2024-05-03"
+      }
+    ]
+  },
+  {
+    "id_facturaVenta": "FV03",
+    "id_usuario": "UU03",
+    "id_cliente": "CL03",
+    "subtotal": 46.00, 
+    "descuento": 4.60, 
+    "descuento_puntos": 3.00,
+    "igv": 8.28, 
+    "total": 51.68, 
+    "detalles_venta": [
+      {
+        "id_facturaVenta": "FV03",
+        "cod_producto": "10",
+        "cantidad": 3,
+        "precio_unit": 10.00,
+        "total_unit": 30.00
+      },
+      {
+        "id_facturaVenta": "FV03",
+        "cod_producto": "13",
+        "cantidad": 1,
+        "precio_unit": 16.00,
+        "total_unit": 16.00
+      }
+    ],
+    "promociones": [
+      {
+        "id_promocion": "PR01",
+        "nom_promocion": "Promocion por default",
+        "titpo_promocion": "%",
+        "dsc_promocion": 1,
+        "fecha_inicio": "2024-04-28",
+        "fecha_fin": "2024-05-31"
+      }]
+  },
+  [
+    {
+      "id_facturaVenta": "FV04",
+      "id_usuario": "UU04",
+      "id_cliente": "CL04",
+      "subtotal": 35.00,
+      "descuento": 3.50,
+      "descuento_puntos": 1.75,
+      "igv": 6.30,
+      "total": 44.55,
+      "detalles_venta": [
+        {
+          "id_facturaVenta": "FV04",
+          "cod_producto": "11",
+          "cantidad": 2,
+          "precio_unit": 15.00,
+          "total_unit": 30.00
+        },
+        {
+          "id_facturaVenta": "FV04",
+          "cod_producto": "10",
+          "cantidad": 4,
+          "precio_unit": 13.00,
+          "total_unit": 52.00
+        }
+      ],
+      "promociones": [
+        {
+          "id_promocion": "PR07",
+          "nom_promocion": "Descuento por Acumulación de Puntos",
+          "titpo_promocion": "%",
+          "dsc_promocion": 0.35,
+          "fecha_inicio": "2024-04-28",
+          "fecha_fin": "2024-12-31"
+        },
+        {
+          "id_promocion": "PR01",
+          "nom_promocion": "Promocion por default",
+          "titpo_promocion": "%",
+          "dsc_promocion": 1,
+          "fecha_inicio": "2024-04-28",
+          "fecha_fin": "2024-05-31"
+        }
+      ]
+    },
+    {
+      "id_facturaVenta": "FV05",
+      "id_usuario": "UU05",
+      "id_cliente": "CL05",
+      "subtotal": 65.00,  
+      "descuento": 15.00, 
+      "descuento_puntos": 4.25,  
+      "igv": 11.70,  
+      "total": 59.95, 
+      "detalles_venta": [
+        {
+          "id_facturaVenta": "FV05",
+          "cod_producto": "12",
+          "cantidad": 3,
+          "precio_unit": 15.00,
+          "total_unit": 45.00
+        },
+        {
+          "id_facturaVenta": "FV05",
+          "cod_producto": "13",
+          "cantidad": 2,
+          "precio_unit": 10.00,
+          "total_unit": 20.00
+        }
+      ],
+      "promociones": [
+        {
+          "id_promocion": "PR08",
+          "nom_promocion": "Cumpleaños Saludable",
+          "titpo_promocion": "FIJO",
+          "dsc_promocion": 10.00,
+          "fecha_inicio": "2024-04-28",
+          "fecha_fin": "2024-12-31"
+        },
+        {
+          "id_promocion": "PR05",
+          "nom_promocion": "Viernes de Yogurt",
+          "titpo_promocion": "%",
+          "dsc_promocion": 0.2,
+          "fecha_inicio": "2024-05-03",
+          "fecha_fin": "2024-05-03"
+        },
+        {
+          "id_promocion": "PR04",
+          "nom_promocion": "Jueves de Sandwich",
+          "titpo_promocion": "FIJO",
+          "dsc_promocion": 1.00,
+          "fecha_inicio": "2024-05-02",
+          "fecha_fin": "2024-05-02"
+        }
+      ]
+    }
+  ]
+  
+
+
+]
+

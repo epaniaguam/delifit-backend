@@ -1,0 +1,42 @@
+[
+  {
+    "id_usuario": "UU01",
+    "nombre": "Administrador",
+    "apellidos": "Sistema",
+    "usuario": "admin",
+    "contrasena": "password123",
+    "rol": "administrador"
+  },
+  {
+    "id_usuario": "UU02",
+    "nombre": "Juan Vendedor",
+    "apellidos": "Pérez",
+    "usuario": "juan.vendedor",
+    "contrasena": "vendedor123",
+    "rol": "vendedor"
+  },
+  {
+    "id_usuario": "UU03",
+    "nombre": "María Cajera",
+    "apellidos": "García",
+    "usuario": "maria.cajera",
+    "contrasena": "cajera123",
+    "rol": "cajero"
+  },
+  {
+    "id_usuario": "UU04",
+    "nombre": "Pedro Repartidor",
+    "apellidos": "González",
+    "usuario": "pedro.repartidor",
+    "contrasena": "repartidor123",
+    "rol": "repartidor"
+  },
+  {
+    "id_usuario": "UU05",
+    "nombre": "Ana Cocinera",
+    "apellidos": "Fernández",
+    "usuario": "ana.cocinera",
+    "contrasena": "cocinera123",
+    "rol": "cocinero"
+  }
+]

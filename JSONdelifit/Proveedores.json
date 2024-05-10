@@ -1,0 +1,47 @@
+[
+  {
+    "idProveedor": 1000,
+    "nomProveedor": "Proveedor 1",
+    "contacto": "444444441"
+  },
+  {
+    "idProveedor": 2000,
+    "nomProveedor": "Proveedor 2",
+    "contacto": "444444442"
+  },
+  {
+    "idProveedor": 3000,
+    "nomProveedor": "Proveedor 3",
+    "contacto": "444444443"
+  },
+  {
+    "idProveedor": 4000,
+    "nomProveedor": "Proveedor 4",
+    "contacto": "444444444"
+  },
+  {
+    "idProveedor": 5000,
+    "nomProveedor": "Proveedor 5",
+    "contacto": "444444445"
+  },
+  {
+    "idProveedor": 6000,
+    "nomProveedor": "Proveedor 6",
+    "contacto": "444444446"
+  },
+  {
+    "idProveedor": 7000,
+    "nomProveedor": "Proveedor 7",
+    "contacto": "444444447"
+  },
+  {
+    "idProveedor": 8000,
+    "nomProveedor": "Proveedor 8",
+    "contacto": "444444448"
+  },
+  {
+    "idProveedor": 9000,
+    "nomProveedor": "Proveedor 9",
+    "contacto": "958693519"
+  }
+]

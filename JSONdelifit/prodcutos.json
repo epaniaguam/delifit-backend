@@ -1,0 +1,183 @@
+
+[
+  {
+    "cod_producto": "10",
+    "nom_producto": "HOTCAKES DE AVENA",
+    "materia_prima": [
+      {
+        "cod_mprima": "150",
+        "nombre_mprima": "miel",
+        "cantidad_usada": "50",
+        "unidad_medida": "mililitros"
+      },
+      {
+        "cod_mprima": "151",
+        "nombre_mprima": "almendra",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "152",
+        "nombre_mprima": "fresas",
+        "cantidad_usada": "10",
+        "unidad_medida": "gramos"
+      }
+    ],
+    "precio": "10.00"
+  },
+  {
+    "cod_producto": "11",
+    "nom_producto": "SANDWICH DE POLLO",
+    "materia_prima": [
+      {
+        "cod_mprima": "153",
+        "nombre_mprima": "pechuga de pollo",
+        "cantidad_usada": "100",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "154",
+        "nombre_mprima": "pan",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "155",
+        "nombre_mprima": "lechuga",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "156",
+        "nombre_mprima": "panela",
+        "cantidad_usada": "10",
+        "unidad_medida": "gramos"
+      }
+    ],
+    "precio": "12.00"
+  },
+  {
+    "cod_producto": "12",
+    "nom_producto": "ENSALADA DE FRUTAS",
+    "materia_prima": [
+      {
+        "cod_mprima": "157",
+        "nombre_mprima": "fresa",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "158",
+        "nombre_mprima": "manzana",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "159",
+        "nombre_mprima": "pera",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "160",
+        "nombre_mprima": "uva",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "161",
+        "nombre_mprima": "trigo",
+        "cantidad_usada": "50",
+        "unidad_medida": "gramos"
+      }
+    ],
+    "precio": "15.00"
+  },
+  {
+    "cod_producto": "13",
+    "nom_producto": "SANDWIN DE ATUN, HUEVO, VERDURAS",
+    "materia_prima": [
+      {
+        "cod_mprima": "154",
+        "nombre_mprima": "pan",
+        "cantidad_usada": "80",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "162",
+        "nombre_mprima": "atún",
+        "cantidad_usada": "60",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "163",
+        "nombre_mprima": "huevo",
+        "cantidad_usada": "1",
+        "unidad_medida": "unidad"
+      },
+      {
+        "cod_mprima": "164",
+        "nombre_mprima": "tomate",
+        "cantidad_usada": "40",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "165",
+        "nombre_mprima": "cebolla",
+        "cantidad_usada": "40",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "166",
+        "nombre_mprima": "pepino",
+        "cantidad_usada": "20",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "167",
+        "nombre_mprima": "limón",
+        "cantidad_usada": "2",
+        "unidad_medida": "unidad"
+      },
+      {
+        "cod_mprima": "168",
+        "nombre_mprima": "lechuga",
+        "cantidad_usada": "10",
+        "unidad_medida": "gramos"
+      }
+    ],
+    "precio": "16.00"
+  },
+  {
+    "cod_producto": "14",
+    "nom_producto": "Yogurt con Avena Tostada, Almendras y Arándanos",
+    "materia_prima": [
+      {
+        "cod_mprima": "169",
+        "nombre_mprima": "yogurt griego",
+        "cantidad_usada": "240",
+        "unidad_medida": "mililitros"
+      },
+      {
+        "cod_mprima": "170",
+        "nombre_mprima": "avena",
+        "cantidad_usada": "30",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "171",
+        "nombre_mprima": "almendras",
+        "cantidad_usada": "15",
+        "unidad_medida": "gramos"
+      },
+      {
+        "cod_mprima": "172",
+        "nombre_mprima": "arandanos",
+        "cantidad_usada": "10",
+        "unidad_medida": "gramos"
+      }
+    ],
+    "precio": "13.00"
+  }
+
+]

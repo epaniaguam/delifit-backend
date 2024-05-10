@@ -1,0 +1,140 @@
+[
+  {
+    "cod_mprima": 150,
+    "nombre_mprima": "miel",
+    "cantidad_acumulada": 10,
+    "unidad_medida": "litros"
+  },
+  {
+    "cod_mprima": 151,
+    "nombre_mprima": "almendra",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 152,
+    "nombre_mprima": "fresas",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 153,
+    "nombre_mprima": "pollo",
+    "cantidad_acumulada": 10,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 154,
+    "nombre_mprima": "pan",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 155,
+    "nombre_mprima": "lechuga",
+    "cantidad_acumulada": 3,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 156,
+    "nombre_mprima": "panela",
+    "cantidad_acumulada": 3,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 157,
+    "nombre_mprima": "fresa",
+    "cantidad_acumulada": 3,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 158,
+    "nombre_mprima": "manzana",
+    "cantidad_acumulada": 4,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 159,
+    "nombre_mprima": "pera",
+    "cantidad_acumulada": 4,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 160,
+    "nombre_mprima": "uva",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 161,
+    "nombre_mprima": "trigo",
+    "cantidad_acumulada": 3,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 162,
+    "nombre_mprima": "atún",
+    "cantidad_acumulada": 2,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 163,
+    "nombre_mprima": "huevo",
+    "cantidad_acumulada": 100,
+    "unidad_medida": null
+  },
+  {
+    "cod_mprima": 164,
+    "nombre_mprima": "tomate",
+    "cantidad_acumulada": 4,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 165,
+    "nombre_mprima": "cebolla",
+    "cantidad_acumulada": 4,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 166,
+    "nombre_mprima": "pepino",
+    "cantidad_acumulada": 4,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 167,
+    "nombre_mprima": "limones",
+    "cantidad_acumulada": 100,
+    "unidad_medida": null
+  },
+  {
+    "cod_mprima": 168,
+    "nombre_mprima": "lechuga",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 169,
+    "nombre_mprima": "yogurt griego",
+    "cantidad_acumulada": 20,
+    "unidad_medida": "litros"
+  },
+  {
+    "cod_mprima": 170,
+    "nombre_mprima": "avena",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 171,
+    "nombre_mprima": "almendras",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  },
+  {
+    "cod_mprima": 172,
+    "nombre_mprima": "arándanos",
+    "cantidad_acumulada": 5,
+    "unidad_medida": "kilos"
+  }
+]
