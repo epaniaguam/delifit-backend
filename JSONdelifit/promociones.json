@@ -11,7 +11,7 @@
     "id_promocion": "PR02",
     "nom_promocion": "Lunes de Hotcakes",
     "titpo_promocion": "FIJO",
-    "dsc_promocion": 2.00,
+    "dsc_promocion": 2.0,
     "fecha_inicio": "2024-04-28",
     "fecha_fin": "2024-04-28"
   },
@@ -27,7 +27,7 @@
     "id_promocion": "PR04",
     "nom_promocion": "Jueves de Sandwich",
     "titpo_promocion": "FIJO",
-    "dsc_promocion": 1.00,
+    "dsc_promocion": 1.0,
     "fecha_inicio": "2024-05-02",
     "fecha_fin": "2024-05-02"
   },
@@ -43,7 +43,7 @@
     "id_promocion": "PR06",
     "nom_promocion": "Fin de Semana Saludable",
     "titpo_promocion": "FIJO",
-    "dsc_promocion": 3.00,
+    "dsc_promocion": 3.0,
     "fecha_inicio": "2024-05-04",
     "fecha_fin": "2024-05-05"
   },
@@ -59,7 +59,7 @@
     "id_promocion": "PR08",
     "nom_promocion": "Cumpleaños Saludable",
     "titpo_promocion": "FIJO",
-    "dsc_promocion": 10.00,
+    "dsc_promocion": 10.0,
     "fecha_inicio": "2024-04-28",
     "fecha_fin": "2024-12-31"
   },
@@ -75,7 +75,7 @@
     "id_promocion": "PR10",
     "nom_promocion": "Envío Gratis a Domicilio",
     "titpo_promocion": "FIJO",
-    "dsc_promocion": 5.00,
+    "dsc_promocion": 5.0,
     "fecha_inicio": "2024-04-28",
     "fecha_fin": "2024-04-28"
   }

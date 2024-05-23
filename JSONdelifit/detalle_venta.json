@@ -3,70 +3,70 @@
     "id_facturaVenta": "FV01",
     "cod_producto": "10",
     "cantidad": 2,
-    "precio_unit": 10.00,
-    "total_unit": 20.00
+    "precio_unit": 10.0,
+    "total_unit": 20.0
   },
   {
     "id_facturaVenta": "FV01",
     "cod_producto": "14",
     "cantidad": 1,
-    "precio_unit": 13.00,
-    "total_unit": 13.00
+    "precio_unit": 13.0,
+    "total_unit": 13.0
   },
   {
     "id_facturaVenta": "FV02",
     "cod_producto": "11",
     "cantidad": 2,
-    "precio_unit": 12.00,
-    "total_unit": 24.00
+    "precio_unit": 12.0,
+    "total_unit": 24.0
   },
   {
     "id_facturaVenta": "FV02",
     "cod_producto": "12",
     "cantidad": 1,
-    "precio_unit": 15.00,
-    "total_unit": 15.00
+    "precio_unit": 15.0,
+    "total_unit": 15.0
   },
   {
     "id_facturaVenta": "FV03",
     "cod_producto": "10",
     "cantidad": 3,
-    "precio_unit": 10.00,
-    "total_unit": 30.00
+    "precio_unit": 10.0,
+    "total_unit": 30.0
   },
   {
     "id_facturaVenta": "FV03",
     "cod_producto": "13",
     "cantidad": 1,
-    "precio_unit": 16.00,
-    "total_unit": 16.00
+    "precio_unit": 16.0,
+    "total_unit": 16.0
   },
   {
     "id_facturaVenta": "FV04",
     "cod_producto": "11",
     "cantidad": 2,
-    "precio_unit": 15.00,
-    "total_unit": 30.00
+    "precio_unit": 15.0,
+    "total_unit": 30.0
   },
   {
     "id_facturaVenta": "FV04",
     "cod_producto": "10",
     "cantidad": 4,
-    "precio_unit": 13.00,
-    "total_unit": 52.00
+    "precio_unit": 13.0,
+    "total_unit": 52.0
   },
   {
     "id_facturaVenta": "FV05",
     "cod_producto": "12",
     "cantidad": 3,
-    "precio_unit": 15.00,
-    "total_unit": 45.00
+    "precio_unit": 15.0,
+    "total_unit": 45.0
   },
   {
     "id_facturaVenta": "FV05",
     "cod_producto": "13",
     "cantidad": 2,
-    "precio_unit": 10.00,
-    "total_unit": 20.00
+    "precio_unit": 10.0,
+    "total_unit": 20.0
   }
 ]
