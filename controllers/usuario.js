@@ -6,14 +6,29 @@ export class UsuarioController {
   }
 
   getAll = async (req, res) => {
-    const { telefono } = req.query;
-    const filteredData = await this.usuarioModel.getAll({ telefono });
-    // console.log("filteredUsuarios:", filteredUsuarios);
+    const { telefono, validacion } = req.query;
+    if (validacion !== undefined) {
+      if (validacion !== "true" && validacion !== "false") {
+        return res.status(400).json({ message: "Validacion debe bool" });
+      }
+    }
+    // console.log(validacion);
 
-    if (!filteredData)
-      return res.status(404).json({ message: "No users found" });
+    const filteredData = await this.usuarioModel.getAll({
+      telefono,
+      validacion,
+    });
 
-    res.status(200).json(filteredData);
+    // console.log("filteredData:", filteredData);
+    try {
+      if (!filteredData)
+        return res.status(404).json({ message: "No users found" });
+
+      res.status(200).json(filteredData);
+    } catch (error) {
+      console.log("error:", error.message);
+      res.status(500).json({ error: "Error getting users" });
+    }
   };
 
   getById = async (req, res) => {

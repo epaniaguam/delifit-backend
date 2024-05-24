@@ -2,7 +2,8 @@
 GET http://localhost:4000/usuario
 ### GET rer.query
 GET http://localhost:4000/usuario?telefono=956565656
-
+###
+GET http://localhost:4000/usuario?validacion=true
 ### GET ID
 GET http://localhost:4000/usuario/28
 
@@ -15,7 +16,6 @@ Content-Type: application/json
   "nombre": "Ronald",
   "apellido": "Steven Obama",
   "documento": "13579132",
-  "puntos": 50,
   "tipo_doc": "DNI",
   "telefono": "956565656"
 }
@@ -26,7 +26,7 @@ PATCH http://localhost:4000/usuario/28
 Content-Type: application/json
 
 {
-  "img_url": "usuarioexpres1.jpg"
+  "validacion": "true"
 }
 
 ### DELETE

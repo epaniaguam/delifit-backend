@@ -1,18 +1,25 @@
 import { pool } from "../../db/conexion.js";
 
 export class UsuarioModel {
-  static async getAll({ telefono }) {
+  static async getAll({ telefono, validacion }) {
     let client;
     try {
       client = await pool.connect();
-
       if (telefono) {
         const result = await client.query(
           "SELECT * FROM usuario WHERE telefono = $1;",
           [telefono],
         );
         // console.log(result.rows);
-        return result.rows[0];
+        return result.rows;
+      }
+      if (validacion) {
+        const result = await client.query(
+          "SELECT * FROM usuario WHERE validacion = $1;",
+          [validacion],
+        );
+        // console.log(result.rows);
+        return result.rows;
       }
 
       const result = await client.query("SELECT * FROM usuario");
@@ -46,13 +53,12 @@ export class UsuarioModel {
   static async create({ input }) {
     let client;
     // console.log("input: ", input);
-    const { nombre, apellido, img_url, telefono, documento, puntos, tipo_doc } =
-      input;
+    const { nombre, apellido, img_url, telefono, documento, tipo_doc } = input;
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT public.registrar_usuario($1, $2, $3, $4, $5, $6, $7)",
-        [img_url, nombre, apellido, documento, puntos, tipo_doc, telefono],
+        "SELECT public.registrar_usuario($1, $2, $3, $4, $5, $6)",
+        [img_url, nombre, apellido, documento, tipo_doc, telefono],
       );
       // console.log(result.rows);
       return result.rows[0];
@@ -83,7 +89,7 @@ export class UsuarioModel {
       const dataUpdate = { ...result.rows[0], ...input };
       // console.log("dataUpdate:", dataUpdate);
       await client.query(
-        "UPDATE usuario SET nombre = $1, apellido = $2, img_url = $3, telefono = $4, documento = $5, puntos = $6, tipo_doc = $7 WHERE id_usuario = $8",
+        "UPDATE usuario SET nombre = $1, apellido = $2, img_url = $3, telefono = $4, documento = $5, puntos = $6, tipo_doc = $7, validacion = $8 WHERE id_usuario = $9",
         [
           dataUpdate.nombre,
           dataUpdate.apellido,
@@ -92,6 +98,7 @@ export class UsuarioModel {
           dataUpdate.documento,
           dataUpdate.puntos,
           dataUpdate.tipo_doc,
+          dataUpdate.validacion,
           id,
         ],
       );
