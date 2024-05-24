@@ -1,8 +1,8 @@
 import express, { json } from "express";
 import { corsMiddleware } from "./middlewares/cors.js";
-import { createProveedorRouter } from "./routes/proveedores.js";
+import { createUsuarioRouter } from "./routes/usuario.js";
 
-export const createApp = ({ proveedoresModel }) => {
+export const createApp = ({ usuarioModel }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
 
@@ -16,11 +16,11 @@ export const createApp = ({ proveedoresModel }) => {
   });
 
   // Usamos la carpeta ROUTES para separar las rutas //////
-  app.use("/proveedores", createProveedorRouter({ proveedoresModel }));
+  app.use("/usuario", createUsuarioRouter({ usuarioModel }));
 
   /// CONEXION ////
 
-  const PORT = process.env.PORT ?? 1234;
+  const PORT = process.env.PORTAPI ?? 1234;
 
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);

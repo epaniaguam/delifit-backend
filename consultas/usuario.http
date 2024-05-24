@@ -1,0 +1,35 @@
+### GET
+GET http://localhost:3000/usuario
+### GET rer.query
+GET http://localhost:3000/usuario?telefono=956565656
+
+### GET ID
+GET http://localhost:3000/usuario/28
+
+### POST
+POST http://localhost:3000/usuario
+Content-Type: application/json
+
+{
+  "img_url": "usuarioexpres.jpg",
+  "nombre": "Ronald",
+  "apellido": "Steven Obama",
+  "documento": "13579132",
+  "puntos": 50,
+  "tipo_doc": "DNI",
+  "telefono": "956565656"
+}
+
+
+### PATCH
+PATCH http://localhost:3000/usuario/28s
+Content-Type: application/json
+
+{
+  "img_url": "usuarioexpres1.jpg"
+}
+
+### DELETE
+DELETE http://localhost:3000/usuario/28
+
+
