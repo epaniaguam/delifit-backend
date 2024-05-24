@@ -1,21 +1,21 @@
 import { pool } from "../../db/conexion.js";
 
-export class UsuarioModel {
-  static async getAll({ telefono }) {
+export class PersonalModel {
+  static async getAll({ rol }) {
     let client;
     try {
       client = await pool.connect();
 
-      if (telefono) {
+      if (rol) {
         const result = await client.query(
-          "SELECT * FROM usuario WHERE telefono = $1;",
-          [telefono],
+          "SELECT * FROM personal WHERE rol = $1;",
+          [rol],
         );
         // console.log(result.rows);
-        return result.rows[0];
+        return result.rows;
       }
 
-      const result = await client.query("SELECT * FROM usuario");
+      const result = await client.query("SELECT * FROM personal");
       return result.rows;
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -30,7 +30,7 @@ export class UsuarioModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM usuario WHERE id_usuario = $1",
+        "SELECT * FROM personal WHERE id_personal = $1",
         [id],
       );
       // console.log(result.rows);
@@ -46,13 +46,13 @@ export class UsuarioModel {
   static async create({ input }) {
     let client;
     // console.log("input: ", input);
-    const { nombre, apellido, img_url, telefono, documento, puntos, tipo_doc } =
+    const { nombre, apellido, contrasena, documento, telefono, tipo_doc, rol } =
       input;
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT public.registrar_usuario($1, $2, $3, $4, $5, $6, $7)",
-        [img_url, nombre, apellido, documento, puntos, tipo_doc, telefono],
+        "SELECT public.registrar_personal($1, $2, $3, $4, $5, $6, $7)",
+        [nombre, apellido, contrasena, documento, telefono, tipo_doc, rol],
       );
       // console.log(result.rows);
       return result.rows[0];
@@ -70,7 +70,7 @@ export class UsuarioModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM usuario WHERE id_usuario = $1",
+        "SELECT * FROM personal WHERE id_personal = $1",
         [id],
       );
       // console.log("result:", result.rows);
@@ -79,29 +79,28 @@ export class UsuarioModel {
         return false;
       }
 
-      // Actualizamos usuario
       const dataUpdate = { ...result.rows[0], ...input };
-      // console.log("dataUpdate:", dataUpdate);
+      // console.log(dataUpdate);
       await client.query(
-        "UPDATE usuario SET nombre = $1, apellido = $2, img_url = $3, telefono = $4, documento = $5, puntos = $6, tipo_doc = $7 WHERE id_usuario = $8",
+        "UPDATE personal SET nombre = $1, apellido = $2, contrasena = $3, documento = $4, telefono= $5, tipo_doc = $6, rol = $7, validacion = $8 WHERE id_personal = $9",
         [
           dataUpdate.nombre,
           dataUpdate.apellido,
-          dataUpdate.img_url,
-          dataUpdate.telefono,
+          dataUpdate.contrasena,
           dataUpdate.documento,
-          dataUpdate.puntos,
+          dataUpdate.telefono,
           dataUpdate.tipo_doc,
+          dataUpdate.rol,
+          dataUpdate.validacion,
           id,
         ],
       );
 
       const dataActualizada = await client.query(
-        "SELECT * FROM usuario WHERE id_usuario = $1",
+        "SELECT * FROM personal WHERE id_personal = $1",
         [id],
       );
 
-      // console.log(result.rows);
       return dataActualizada.rows[0];
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -116,14 +115,14 @@ export class UsuarioModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM usuario WHERE id_usuario = $1",
+        "SELECT * FROM personal WHERE id_personal = $1",
         [id],
       );
 
-      // console.log(result.rows);
+      console.log(result.rows);
 
       if (result.rows.length > 0) {
-        await client.query("DELETE FROM usuario WHERE id_usuario = $1", [id]);
+        await client.query("DELETE FROM personal WHERE id_personal = $1", [id]);
         return true;
       }
       return false;

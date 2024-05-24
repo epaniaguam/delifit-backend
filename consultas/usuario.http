@@ -1,13 +1,13 @@
 ### GET
-GET http://localhost:3000/usuario
+GET http://localhost:4000/usuario
 ### GET rer.query
-GET http://localhost:3000/usuario?telefono=956565656
+GET http://localhost:4000/usuario?telefono=956565656
 
 ### GET ID
-GET http://localhost:3000/usuario/28
+GET http://localhost:4000/usuario/28
 
 ### POST
-POST http://localhost:3000/usuario
+POST http://localhost:4000/usuario
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 
 ### PATCH
-PATCH http://localhost:3000/usuario/28s
+PATCH http://localhost:4000/usuario/28
 Content-Type: application/json
 
 {
@@ -30,6 +30,6 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:3000/usuario/28
+DELETE http://localhost:4000/usuario/28
 
 

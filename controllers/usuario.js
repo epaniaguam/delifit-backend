@@ -7,13 +7,13 @@ export class UsuarioController {
 
   getAll = async (req, res) => {
     const { telefono } = req.query;
-    const filteredUsuarios = await this.usuarioModel.getAll({ telefono });
+    const filteredData = await this.usuarioModel.getAll({ telefono });
     // console.log("filteredUsuarios:", filteredUsuarios);
 
-    if (!filteredUsuarios)
+    if (!filteredData)
       return res.status(404).json({ message: "No users found" });
 
-    res.status(200).json(filteredUsuarios);
+    res.status(200).json(filteredData);
   };
 
   getById = async (req, res) => {
@@ -51,16 +51,16 @@ export class UsuarioController {
     const result = req.body;
 
     try {
-      const updatedUsuario = await this.usuarioModel.update({
+      const updatedData = await this.usuarioModel.update({
         id,
         input: result,
       });
-      // console.log("updatedUsuario:", updatedUsuario);
+      // console.log("updatedData:", updatedData);
 
-      if (updatedUsuario === false)
+      if (updatedData === false)
         return res.status(404).json({ message: "Usuario not found" });
 
-      res.status(200).json(updatedUsuario);
+      res.status(200).json(updatedData);
     } catch (error) {
       if (error.severity) {
         res.status(400).json({ message: "Id format incorrect" });

@@ -1,0 +1,36 @@
+### GET
+GET http://localhost:4000/personal
+
+### GET rer.query
+GET http://localhost:4000/personal?rol=admin
+
+### GET ID
+GET http://localhost:4000/personal/8
+
+### POST
+POST http://localhost:4000/personal
+Content-Type: application/json
+
+{
+  "nombre": "Fito",
+  "apellido": "Paldis",
+  "contrasena": "password654",
+  "documento": "34567892",
+  "telefono": "987654322",
+  "tipo_doc": "DNI",
+  "rol": "vendedor"
+}
+
+
+### PATCH
+PATCH http://localhost:4000/personal/7
+Content-Type: application/json
+
+{
+  "apellido": "Paes"
+}
+
+### DELETE
+DELETE http://localhost:4000/personal/28
+
+
