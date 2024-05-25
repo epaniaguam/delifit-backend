@@ -1,9 +1,10 @@
 import express, { json } from "express";
 import { corsMiddleware } from "./middlewares/cors.js";
+import { createInsumoRouter } from "./routes/insumo.js";
 import { createPersonalRouter } from "./routes/personal.js";
 import { createUsuarioRouter } from "./routes/usuario.js";
 
-export const createApp = ({ usuarioModel, personalModel }) => {
+export const createApp = ({ usuarioModel, personalModel, insumoModel }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
 
@@ -19,6 +20,7 @@ export const createApp = ({ usuarioModel, personalModel }) => {
   // Usamos la carpeta ROUTES para separar las rutas //////
   app.use("/usuario", createUsuarioRouter({ usuarioModel }));
   app.use("/personal", createPersonalRouter({ personalModel }));
+  app.use("/insumo", createInsumoRouter({ insumoModel }));
 
   /// CONEXION ////
 

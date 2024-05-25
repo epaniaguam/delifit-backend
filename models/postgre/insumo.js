@@ -1,29 +1,27 @@
 import { pool } from "../../db/conexion.js";
 
-export class PersonalModel {
-  static async getAll({ rol, validacion }) {
+export class InsumoModel {
+  static async getAll({ nombre, categoria }) {
     let client;
     try {
       client = await pool.connect();
 
-      if (rol) {
+      if (nombre) {
         const result = await client.query(
-          "SELECT * FROM personal WHERE rol = $1;",
-          [rol],
+          "SELECT * FROM insumo WHERE nombre = $1;",
+          [nombre],
         );
-        // console.log(result.rows);
         return result.rows;
       }
-      if (validacion) {
+      if (categoria) {
         const result = await client.query(
-          "SELECT * FROM personal WHERE validacion = $1;",
-          [validacion],
+          "SELECT * FROM insumo WHERE categoria = $1;",
+          [categoria],
         );
-        // console.log(result.rows);
         return result.rows;
       }
 
-      const result = await client.query("SELECT * FROM personal");
+      const result = await client.query("SELECT * FROM insumo");
       return result.rows;
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -38,10 +36,9 @@ export class PersonalModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM personal WHERE id_personal = $1",
+        "SELECT * FROM insumo WHERE id_insumo = $1",
         [id],
       );
-      // console.log(result.rows);
       return result.rows[0];
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -53,20 +50,19 @@ export class PersonalModel {
 
   static async create({ input }) {
     let client;
-    // console.log("input: ", input);
-    const { nombre, apellido, contrasena, documento, telefono, tipo_doc, rol } =
-      input;
+
+    const { img_url, nombre, cantidad, categoria, medida } = input;
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT public.registrar_personal($1, $2, $3, $4, $5, $6, $7)",
-        [nombre, apellido, contrasena, documento, telefono, tipo_doc, rol],
+        "SELECT public.registrar_insumo($1, $2, $3, $4, $5)",
+        [img_url, nombre, cantidad, categoria, medida],
       );
-      // console.log(result.rows);
+      // return result.rows[0].registrar_insumo;
       return result.rows[0];
     } catch (error) {
-      console.error("Error executing query MODEL", error.message);
-      throw error.message; // throw error para que el controlador lo maneje
+      console.error("Error executing query", error.message);
+      throw error.message;
     } finally {
       client.release();
     }
@@ -74,38 +70,31 @@ export class PersonalModel {
 
   static async update({ id, input }) {
     let client;
-
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM personal WHERE id_personal = $1",
+        "SELECT * FROM insumo WHERE id_insumo = $1",
         [id],
       );
-      // console.log("result:", result.rows);
-      // console.log("resultL:", result.rows.length);
+
       if (result.rows.length === 0) {
         return false;
       }
-
       const dataUpdate = { ...result.rows[0], ...input };
-      // console.log(dataUpdate);
+
       await client.query(
-        "UPDATE personal SET nombre = $1, apellido = $2, contrasena = $3, documento = $4, telefono= $5, tipo_doc = $6, rol = $7, validacion = $8 WHERE id_personal = $9",
+        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5 WHERE id_insumo = $6",
         [
+          dataUpdate.img_url,
           dataUpdate.nombre,
-          dataUpdate.apellido,
-          dataUpdate.contrasena,
-          dataUpdate.documento,
-          dataUpdate.telefono,
-          dataUpdate.tipo_doc,
-          dataUpdate.rol,
-          dataUpdate.validacion,
+          dataUpdate.cantidad,
+          dataUpdate.categoria,
+          dataUpdate.medida,
           id,
         ],
       );
-
       const dataActualizada = await client.query(
-        "SELECT * FROM personal WHERE id_personal = $1",
+        "SELECT * FROM insumo WHERE id_insumo = $1",
         [id],
       );
 
@@ -123,14 +112,14 @@ export class PersonalModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM personal WHERE id_personal = $1",
+        "SELECT * FROM insumo WHERE id_insumo = $1",
         [id],
       );
 
       // console.log(result.rows);
 
       if (result.rows.length > 0) {
-        await client.query("DELETE FROM personal WHERE id_personal = $1", [id]);
+        await client.query("DELETE FROM insumo WHERE id_insumo = $1", [id]);
         return true;
       }
       return false;

@@ -6,8 +6,15 @@ export class PersonalController {
   }
 
   getAll = async (req, res) => {
-    const { rol } = req.query;
-    const filteredData = await this.personalModel.getAll({ rol });
+    const { rol, validacion } = req.query;
+
+    if (validacion !== undefined) {
+      if (validacion !== "true" && validacion !== "false") {
+        return res.status(400).json({ message: "Validacion debe bool" });
+      }
+    }
+
+    const filteredData = await this.personalModel.getAll({ rol, validacion });
     // console.log("filteredData:", filteredData);
 
     if (!filteredData)
@@ -32,7 +39,7 @@ export class PersonalController {
 
     try {
       const newData = await this.personalModel.create({ input: result });
-      console.log("newData:", newData);
+      // console.log("newData:", newData);
 
       res.status(201).json(newData);
     } catch (error) {
@@ -76,7 +83,7 @@ export class PersonalController {
 
     try {
       const deletedData = await this.personalModel.delete({ id });
-      // console.log("deletedPersonal:", deletedPersonal);
+      // console.log("deletedData:", deletedData);
 
       if (deletedData === false)
         return res.status(404).json({ message: "Personal not found" });
@@ -86,7 +93,7 @@ export class PersonalController {
       if (error.severity) {
         res.status(400).json({ message: "Id format incorrect" });
       } else {
-        res.status(500).json({ error: "Error deleting user" });
+        res.status(500).json({ error: "Error deleting Personal" });
       }
     }
   };

@@ -3,6 +3,9 @@ GET http://localhost:4000/personal
 
 ### GET rer.query
 GET http://localhost:4000/personal?rol=admin
+### GET rer.query
+GET http://localhost:4000/personal?validacion=true
+
 
 ### GET ID
 GET http://localhost:4000/personal/8
@@ -23,14 +26,14 @@ Content-Type: application/json
 
 
 ### PATCH
-PATCH http://localhost:4000/personal/7
+PATCH http://localhost:4000/personal/8
 Content-Type: application/json
 
 {
-  "apellido": "Paes"
+  "validacion": "true"
 }
 
 ### DELETE
-DELETE http://localhost:4000/personal/28
+DELETE http://localhost:4000/personal/8
 
 
