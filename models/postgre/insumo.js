@@ -1,27 +1,36 @@
 import { pool } from "../../db/conexion.js";
 
 export class InsumoModel {
-  static async getAll({ nombre, categoria }) {
+  static async getAll({ nombre, categoria, visibilidad }) {
     let client;
     try {
       client = await pool.connect();
 
       if (nombre) {
         const result = await client.query(
-          "SELECT * FROM insumo WHERE nombre = $1;",
+          "SELECT * FROM insumo WHERE nombre = $1 AND visibilidad=true;",
           [nombre],
         );
         return result.rows;
       }
       if (categoria) {
         const result = await client.query(
-          "SELECT * FROM insumo WHERE categoria = $1;",
+          "SELECT * FROM insumo WHERE categoria = $1 AND visibilidad=true;",
           [categoria],
         );
         return result.rows;
       }
+      if (visibilidad) {
+        const result = await client.query(
+          "SELECT * FROM insumo WHERE visibilidad = $1;",
+          [visibilidad],
+        );
+        return result.rows;
+      }
 
-      const result = await client.query("SELECT * FROM insumo");
+      const result = await client.query(
+        "SELECT * FROM insumo WHERE visibilidad=true;",
+      );
       return result.rows;
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -36,7 +45,7 @@ export class InsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM insumo WHERE id_insumo = $1",
+        "SELECT * FROM insumo WHERE id_insumo = $1 AND visibilidad=true;",
         [id],
       );
       return result.rows[0];
@@ -83,13 +92,14 @@ export class InsumoModel {
       const dataUpdate = { ...result.rows[0], ...input };
 
       await client.query(
-        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5 WHERE id_insumo = $6",
+        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $6",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
           dataUpdate.cantidad,
           dataUpdate.categoria,
           dataUpdate.medida,
+          dataUpdate.visibilidad,
           id,
         ],
       );
@@ -116,10 +126,12 @@ export class InsumoModel {
         [id],
       );
 
-      // console.log(result.rows);
-
       if (result.rows.length > 0) {
-        await client.query("DELETE FROM insumo WHERE id_insumo = $1", [id]);
+        await client.query(
+          "UPDATE insumo SET visibilidad=$1 WHERE id_insumo = $2",
+          [false, id],
+        );
+        // await client.query("DELETE FROM insumo WHERE id_insumo = $1", [id]);
         return true;
       }
       return false;

@@ -6,9 +6,19 @@ export class InsumoController {
   }
 
   getAll = async (req, res) => {
-    const { nombre, categoria } = req.query;
+    const { nombre, categoria, visibilidad } = req.query;
 
-    const filteredData = await this.insumoModel.getAll({ nombre, categoria });
+    if (visibilidad !== undefined) {
+      if (visibilidad !== "true" && visibilidad !== "false") {
+        return res.status(400).json({ message: "Validacion debe ser bool" });
+      }
+    }
+
+    const filteredData = await this.insumoModel.getAll({
+      nombre,
+      categoria,
+      visibilidad,
+    });
     // console.log("filteredData:", filteredData);
 
     if (!filteredData)

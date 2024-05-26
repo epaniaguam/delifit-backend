@@ -8,7 +8,7 @@ GET http://localhost:4000/insumo?categoria=categoria3
 
 
 ### GET ID
-GET http://localhost:4000/insumo/8
+GET http://localhost:4000/insumo/16
 
 ### POST
 POST http://localhost:4000/insumo
