@@ -5,6 +5,8 @@ GET http://localhost:4000/insumo
 GET http://localhost:4000/insumo?nombre=Leche
 ### GET rer.query
 GET http://localhost:4000/insumo?categoria=categoria3
+### GET rer.query
+GET http://localhost:4000/insumo?visibilidad=false
 
 
 ### GET ID

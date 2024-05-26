@@ -4,6 +4,8 @@ GET http://localhost:4000/usuario
 GET http://localhost:4000/usuario?telefono=956565656
 ###
 GET http://localhost:4000/usuario?validacion=true
+###
+GET http://localhost:4000/usuario?visibilidad=false
 ### GET ID
 GET http://localhost:4000/usuario/28
 
@@ -26,7 +28,7 @@ PATCH http://localhost:4000/usuario/28
 Content-Type: application/json
 
 {
-  "validacion": "true"
+  "visibilidad": "true"
 }
 
 ### DELETE

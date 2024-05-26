@@ -10,7 +10,7 @@ export class InsumoController {
 
     if (visibilidad !== undefined) {
       if (visibilidad !== "true" && visibilidad !== "false") {
-        return res.status(400).json({ message: "Validacion debe ser bool" });
+        return res.status(400).json({ message: "visibilidad debe ser bool" });
       }
     }
 
@@ -47,8 +47,7 @@ export class InsumoController {
 
       return res.status(201).json(newData);
     } catch (error) {
-      if (error.includes("existe")) {
-        console.log(error.includes("existe"));
+      if (error === "El insumo ya existe") {
         return res.status(409).json({ message: "Insumo ya existe" });
       }
       return res.status(500).json({ error: "Error creando Insumo" });

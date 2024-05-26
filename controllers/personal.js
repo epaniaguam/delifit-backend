@@ -6,15 +6,24 @@ export class PersonalController {
   }
 
   getAll = async (req, res) => {
-    const { rol, validacion } = req.query;
+    const { rol, validacion, visibilidad } = req.query;
 
     if (validacion !== undefined) {
       if (validacion !== "true" && validacion !== "false") {
         return res.status(400).json({ message: "Validacion debe bool" });
       }
     }
+    if (visibilidad !== undefined) {
+      if (visibilidad !== "true" && visibilidad !== "false") {
+        return res.status(400).json({ message: "visibilidad debe ser bool" });
+      }
+    }
 
-    const filteredData = await this.personalModel.getAll({ rol, validacion });
+    const filteredData = await this.personalModel.getAll({
+      rol,
+      validacion,
+      visibilidad,
+    });
     // console.log("filteredData:", filteredData);
 
     if (!filteredData)

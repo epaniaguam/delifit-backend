@@ -5,6 +5,8 @@ GET http://localhost:4000/personal
 GET http://localhost:4000/personal?rol=admin
 ### GET rer.query
 GET http://localhost:4000/personal?validacion=true
+### GET rer.query
+GET http://localhost:4000/personal?visibilidad=false
 
 
 ### GET ID

@@ -5,6 +5,8 @@ GET http://localhost:4000/producto
 GET http://localhost:4000/producto?precio=10.00
 ### GET rer.query
 GET http://localhost:4000/producto?categoria=categoria3
+### GET rer.query
+GET http://localhost:4000/producto?visibilidad=false
 
 
 ### GET ID
@@ -24,14 +26,14 @@ Content-Type: application/json
 
 
 ### PATCH
-PATCH http://localhost:4000/producto/9
+PATCH http://localhost:4000/producto/8
 Content-Type: application/json
 
 {
-  "visibilidad": "false"
+  "visibilidad": "true"
 }
 
 ### DELETE
-DELETE http://localhost:4000/producto/9
+DELETE http://localhost:4000/producto/8
 
 

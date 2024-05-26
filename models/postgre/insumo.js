@@ -63,6 +63,19 @@ export class InsumoModel {
     const { img_url, nombre, cantidad, categoria, medida } = input;
     try {
       client = await pool.connect();
+
+      // Verificar si ya existe un producto con el mismo nombre y precio para actualizarlo en vez de crearlo
+      const dataSame = await client.query(
+        "SELECT id_insumo FROM insumo WHERE nombre = $1 AND visibilidad = false;",
+        [nombre],
+      );
+      if (dataSame.rows.length > 0) {
+        input = { ...input, visibilidad: true };
+        const id = dataSame.rows[0].id_insumo;
+
+        return InsumoModel.update({ id, input });
+      }
+
       const result = await client.query(
         "SELECT public.registrar_insumo($1, $2, $3, $4, $5)",
         [img_url, nombre, cantidad, categoria, medida],
@@ -90,9 +103,8 @@ export class InsumoModel {
         return false;
       }
       const dataUpdate = { ...result.rows[0], ...input };
-
       await client.query(
-        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $6",
+        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $7",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,

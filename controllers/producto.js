@@ -4,7 +4,13 @@ export class ProductoController {
   }
 
   getAll = async (req, res) => {
-    const { precio, categoria } = req.query;
+    const { precio, categoria, visibilidad } = req.query;
+
+    if (visibilidad !== undefined) {
+      if (visibilidad !== "true" && visibilidad !== "false") {
+        return res.status(400).json({ message: "visibilidad debe ser bool" });
+      }
+    }
 
     if (precio) {
       const validPrecio = Number(precio);
@@ -13,7 +19,11 @@ export class ProductoController {
       }
     }
 
-    const filteredData = await this.productoModel.getAll({ precio, categoria });
+    const filteredData = await this.productoModel.getAll({
+      precio,
+      categoria,
+      visibilidad,
+    });
     // console.log("filteredData:", filteredData);
 
     if (!filteredData)
@@ -42,7 +52,7 @@ export class ProductoController {
 
       return res.status(201).json(newData);
     } catch (error) {
-      if (error.includes("existe")) {
+      if (error === "El producto ya existe") {
         // console.log(error);
         return res.status(409).json({ message: "Producto ya existe" });
       }

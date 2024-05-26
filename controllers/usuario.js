@@ -6,17 +6,23 @@ export class UsuarioController {
   }
 
   getAll = async (req, res) => {
-    const { telefono, validacion } = req.query;
+    const { telefono, validacion, visibilidad } = req.query;
     if (validacion !== undefined) {
       if (validacion !== "true" && validacion !== "false") {
         return res.status(400).json({ message: "Validacion debe bool" });
       }
     }
     // console.log(validacion);
+    if (visibilidad !== undefined) {
+      if (visibilidad !== "true" && visibilidad !== "false") {
+        return res.status(400).json({ message: "visibilidad debe ser bool" });
+      }
+    }
 
     const filteredData = await this.usuarioModel.getAll({
       telefono,
       validacion,
+      visibilidad,
     });
 
     // console.log("filteredData:", filteredData);
@@ -47,7 +53,7 @@ export class UsuarioController {
 
     try {
       const newUsuario = await this.usuarioModel.create({ input: result });
-      console.log("newUsuario:", newUsuario);
+      // console.log("newUsuario:", newUsuario);
 
       res.status(201).json(newUsuario);
     } catch (error) {
