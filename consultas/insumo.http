@@ -17,9 +17,9 @@ POST http://localhost:4000/insumo
 Content-Type: application/json
 
 {
-  "img_url": "imagen100.jpg",
+  "img_url": "/insumo/ejemplo-insumo.png",
   "nombre": "Ambrosia",
-  "cantidad": "15.0",
+  "cantidad": 15.0,
   "categoria": "categoria3",
   "medida": "kilogramo"
 }
