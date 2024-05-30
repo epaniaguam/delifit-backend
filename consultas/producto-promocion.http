@@ -1,0 +1,35 @@
+### GET
+GET http://localhost:4000/producto-promocion
+
+### GET rer.query
+GET http://localhost:4000/producto-promocion?id_producto=1
+### GET rer.query
+GET http://localhost:4000/producto-promocion?id_promocion=5
+
+### GET ID
+GET http://localhost:4000/producto-promocion/2
+
+### POST
+POST http://localhost:4000/producto-promocion
+Content-Type: application/json
+
+{
+  "id_producto": 6,
+  "id_promocion": 3,
+  "cantidad": "6"
+}
+
+
+### PATCH
+PATCH http://localhost:4000/producto-promocion/6
+Content-Type: application/json
+
+{
+  "id_promocion": "3",
+  "cantidad": "13"
+}
+
+### DELETE
+DELETE http://localhost:4000/producto-promocion/6/2
+
+

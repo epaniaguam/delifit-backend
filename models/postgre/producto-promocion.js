@@ -1,27 +1,27 @@
 import { pool } from "../../db/conexion.js";
 
-export class ProductoInsumoModel {
-  static async getAll({ id_producto, id_insumo }) {
+export class ProductoPromocionModel {
+  static async getAll({ id_producto, id_promocion }) {
     let client;
     try {
       client = await pool.connect();
 
       if (id_producto) {
         const result = await client.query(
-          "SELECT * FROM ins_prod WHERE id_producto = $1;",
+          "SELECT * FROM prod_promocion WHERE id_producto = $1;",
           [id_producto],
         );
         return result.rows;
       }
-      if (id_insumo) {
+      if (id_promocion) {
         const result = await client.query(
-          "SELECT * FROM ins_prod WHERE id_insumo = $1;",
-          [id_insumo],
+          "SELECT * FROM prod_promocion WHERE id_promocion = $1;",
+          [id_promocion],
         );
         return result.rows;
       }
 
-      const result = await client.query("SELECT * FROM ins_prod;");
+      const result = await client.query("SELECT * FROM prod_promocion;");
       return result.rows;
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -36,7 +36,7 @@ export class ProductoInsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM ins_prod WHERE id_producto = $1;",
+        "SELECT * FROM prod_promocion WHERE id_producto = $1;",
         [id],
       );
       return result.rows;
@@ -54,8 +54,8 @@ export class ProductoInsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT registrar_insumo_producto($1, $2,$3);",
-        [input.id_producto, input.id_insumo, input.cantidad],
+        "SELECT registrar_prod_promocion($1, $2, $3);",
+        [input.id_producto, input.id_promocion, input.cantidad],
       );
       // console.log("result:", result.rows);
       return result.rows[0];
@@ -72,7 +72,7 @@ export class ProductoInsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM ins_prod WHERE id_producto = $1;",
+        "SELECT * FROM prod_promocion WHERE id_producto = $1;",
         [id],
       );
       console.log("result:", result.rows);
@@ -83,11 +83,11 @@ export class ProductoInsumoModel {
       const dataUpdate = { ...result.rows[0], ...input };
 
       await client.query(
-        "UPDATE ins_prod SET cantidad = $1 WHERE id_producto = $2 AND id_insumo = $3 RETURNING *;",
-        [dataUpdate.cantidad, id, dataUpdate.id_insumo],
+        "UPDATE prod_promocion SET cantidad = $1 WHERE id_producto = $2 AND id_promocion = $3 RETURNING *;",
+        [dataUpdate.cantidad, id, dataUpdate.id_promocion],
       );
       const dataActualizada = await client.query(
-        "SELECT * FROM ins_prod WHERE id_producto = $1",
+        "SELECT * FROM prod_promocion WHERE id_producto = $1",
         [id],
       );
       return dataActualizada.rows;
@@ -99,19 +99,19 @@ export class ProductoInsumoModel {
     }
   }
 
-  static async delete({ id_producto, id_insumo }) {
+  static async delete({ id_producto, id_promocion }) {
     let client;
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM ins_prod WHERE id_producto = $1 AND id_insumo = $2",
-        [id_producto, id_insumo],
+        "SELECT * FROM prod_promocion WHERE id_producto = $1 AND id_promocion = $2",
+        [id_producto, id_promocion],
       );
 
       if (result.rows.length > 0) {
         await client.query(
-          "DELETE FROM ins_prod WHERE id_producto = $1 AND id_insumo = $2 RETURNING *;",
-          [id_producto, id_insumo],
+          "DELETE FROM prod_promocion WHERE id_producto = $1 AND id_promocion = $2 RETURNING *;",
+          [id_producto, id_promocion],
         );
 
         return true;

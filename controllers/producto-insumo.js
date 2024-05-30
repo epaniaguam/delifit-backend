@@ -60,7 +60,7 @@ export class ProductoInsumoController {
       return res.status(200).json(updatedData);
     } catch (error) {
       if (error.severity) {
-        return res.status(400).json({ message: "Id format incorrect" });
+        return res.status(400).json({ message: "Data format incorrect" });
       }
       return res
         .status(500)
