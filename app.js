@@ -5,6 +5,7 @@ import { createPersonalRouter } from "./routes/personal.js";
 import { createProductoInsumoRouter } from "./routes/producto-insumo.js";
 import { createProductoPromocionRouter } from "./routes/producto-promocion.js";
 import { createProductoRouter } from "./routes/producto.js";
+import { createPromocionRouter } from "./routes/promocion.js";
 import { createUsuarioRouter } from "./routes/usuario.js";
 
 export const createApp = ({
@@ -14,6 +15,7 @@ export const createApp = ({
   productoModel,
   productoInsumoModel,
   productoPromocionModel,
+  promocionModel,
 }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
@@ -32,6 +34,7 @@ export const createApp = ({
   app.use("/personal", createPersonalRouter({ personalModel }));
   app.use("/insumo", createInsumoRouter({ insumoModel }));
   app.use("/producto", createProductoRouter({ productoModel }));
+  app.use("/promocion", createPromocionRouter({ promocionModel }));
   app.use(
     "/producto-insumo",
     createProductoInsumoRouter({ productoInsumoModel }),
