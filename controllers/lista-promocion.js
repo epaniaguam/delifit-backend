@@ -1,33 +1,33 @@
-export class ListaProductoController {
-  constructor({ listaProductoModel }) {
-    this.listaProductoModel = listaProductoModel;
+export class ListaPromocionController {
+  constructor({ listaPromocionModel }) {
+    this.listaPromocionModel = listaPromocionModel;
   }
 
   getAll = async (req, res) => {
-    const filteredData = await this.listaProductoModel.getAll();
+    const filteredData = await this.listaPromocionModel.getAll();
 
     if (!filteredData)
-      return res.status(404).json({ message: "Lista-producto no encontrado" });
+      return res.status(404).json({ message: "Lista-promocion no encontrado" });
 
     res.status(200).json(filteredData);
   };
 
   getById = async (req, res) => {
-    const { id_pedido, id_producto } = req.params;
-    const result = await this.listaProductoModel.getById({
+    const { id_pedido, id_promocion } = req.params;
+    const result = await this.listaPromocionModel.getById({
       id_pedido,
-      id_producto,
+      id_promocion,
     });
 
     if (result) return res.status(200).json(result);
-    return res.status(404).json({ message: "Lista-producto no encontrado" });
+    return res.status(404).json({ message: "Lista-promocion no encontrado" });
   };
 
   create = async (req, res) => {
     const result = req.body;
 
     try {
-      const newData = await this.listaProductoModel.create({
+      const newData = await this.listaPromocionModel.create({
         input: result,
       });
 
@@ -36,9 +36,9 @@ export class ListaProductoController {
       if (error.message.includes("El registro ya existe")) {
         return res
           .status(409)
-          .json({ message: "Producto ya agregado a la lista" });
+          .json({ message: "Promocion ya agregado a la lista" });
       }
-      return res.status(500).json({ error: "Error creando ListaProducto" });
+      return res.status(500).json({ error: "Error creando ListaPromocion" });
     }
   };
 
@@ -48,7 +48,7 @@ export class ListaProductoController {
     const result = req.body;
 
     try {
-      const updatedData = await this.listaProductoModel.update({
+      const updatedData = await this.listaPromocionModel.update({
         id,
         input: result,
       });
@@ -56,7 +56,7 @@ export class ListaProductoController {
       if (updatedData === false)
         return res
           .status(404)
-          .json({ message: "Lista-Producto no encontrado" });
+          .json({ message: "Lista-promocion no encontrado" });
 
       return res.status(200).json(updatedData);
     } catch (error) {
@@ -65,27 +65,27 @@ export class ListaProductoController {
       }
       return res
         .status(500)
-        .json({ error: "Error actualizando Lista-Producto" });
+        .json({ error: "Error actualizando Lista-promocion" });
     }
   };
 
   delete = async (req, res) => {
-    const { id_pedido, id_producto } = req.params;
+    const { id_pedido, id_promocion } = req.params;
 
     try {
-      const deletedData = await this.listaProductoModel.delete({
+      const deletedData = await this.listaPromocionModel.delete({
         id_pedido,
-        id_producto,
+        id_promocion,
       });
 
       if (deletedData === false)
         return res
           .status(404)
-          .json({ message: "Lista-producto no encontrado" });
+          .json({ message: "Lista-promocion no encontrado" });
 
       return res.status(200).json(deletedData);
     } catch (error) {
-      return res.status(500).json({ error: "Error deleting Lista-producto" });
+      return res.status(500).json({ error: "Error deleting Lista-promocion" });
     }
   };
 }

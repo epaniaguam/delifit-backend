@@ -2,6 +2,7 @@ import express, { json } from "express";
 import { corsMiddleware } from "./middlewares/cors.js";
 import { createInsumoRouter } from "./routes/insumo.js";
 import { createListaProductoRouter } from "./routes/lista-producto.js";
+import { createListaPromocionRouter } from "./routes/lista-promocion.js";
 import { createPersonalRouter } from "./routes/personal.js";
 import { createProductoInsumoRouter } from "./routes/producto-insumo.js";
 import { createProductoPromocionRouter } from "./routes/producto-promocion.js";
@@ -18,6 +19,7 @@ export const createApp = ({
   productoPromocionModel,
   promocionModel,
   listaProductoModel,
+  listaPromocionModel,
 }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
@@ -46,6 +48,10 @@ export const createApp = ({
     createProductoPromocionRouter({ productoPromocionModel }),
   );
   app.use("/lista-producto", createListaProductoRouter({ listaProductoModel }));
+  app.use(
+    "/lista-promocion",
+    createListaPromocionRouter({ listaPromocionModel }),
+  );
 
   /// CONEXION ////
 
