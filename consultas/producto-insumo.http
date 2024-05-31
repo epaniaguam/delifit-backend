@@ -7,15 +7,15 @@ GET http://localhost:4000/producto-insumo?id_producto=1
 GET http://localhost:4000/producto-insumo?id_insumo=2
 
 ### GET ID
-GET http://localhost:4000/producto-insumo/1
+GET http://localhost:4000/producto-insumo/2
 
 ### POST
 POST http://localhost:4000/producto-insumo
 Content-Type: application/json
 
 {
-  "id_producto": 5,
-  "id_insumo": 4,
+  "id_producto": 6,
+  "id_insumo": 3,
   "cantidad": 12
 }
 

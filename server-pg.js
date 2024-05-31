@@ -1,5 +1,6 @@
 import { createApp } from "./app.js";
 import { InsumoModel } from "./models/postgre/insumo.js";
+import { ListaProductoModel } from "./models/postgre/lista-producto.js";
 import { PersonalModel } from "./models/postgre/personal.js";
 import { ProductoInsumoModel } from "./models/postgre/producto-insumo.js";
 import { ProductoPromocionModel } from "./models/postgre/producto-promocion.js";
@@ -15,4 +16,5 @@ createApp({
   productoInsumoModel: ProductoInsumoModel,
   productoPromocionModel: ProductoPromocionModel,
   promocionModel: PromocionModel,
+  listaProductoModel: ListaProductoModel,
 });
