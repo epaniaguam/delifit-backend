@@ -3,6 +3,7 @@ import { corsMiddleware } from "./middlewares/cors.js";
 import { createInsumoRouter } from "./routes/insumo.js";
 import { createListaProductoRouter } from "./routes/lista-producto.js";
 import { createListaPromocionRouter } from "./routes/lista-promocion.js";
+import { createPedidoRouter } from "./routes/pedido.js";
 import { createPersonalRouter } from "./routes/personal.js";
 import { createProductoInsumoRouter } from "./routes/producto-insumo.js";
 import { createProductoPromocionRouter } from "./routes/producto-promocion.js";
@@ -20,6 +21,7 @@ export const createApp = ({
   promocionModel,
   listaProductoModel,
   listaPromocionModel,
+  pedidoModel,
 }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
@@ -52,6 +54,7 @@ export const createApp = ({
     "/lista-promocion",
     createListaPromocionRouter({ listaPromocionModel }),
   );
+  app.use("/pedido", createPedidoRouter({ pedidoModel }));
 
   /// CONEXION ////
 

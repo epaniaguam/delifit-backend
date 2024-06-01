@@ -1,0 +1,42 @@
+### GET
+GET http://localhost:4000/pedido
+### GET
+GET http://localhost:4000/pedido?visibilidad=false
+
+### GET ID
+GET http://localhost:4000/pedido/1010/2
+
+### GET ID
+GET http://localhost:4000/pedido/1011
+
+### POST
+POST http://localhost:4000/pedido
+Content-Type: application/json
+
+{
+  "id_pedido": 1011,
+  "id_usuario": 2,
+  "fecha_emision": "2024-05-30",
+  "subtotal": "150.00",
+  "descuento_promocion": "10.00",
+  "descuento_puntos": "8.00",
+  "impuesto": "8.00",
+  "total": "93.00"
+}
+
+
+### PATCH
+PATCH http://localhost:4000/pedido/1011
+Content-Type: application/json
+
+{
+  "subtotal": 60
+}
+
+### DELETE
+DELETE http://localhost:4000/pedido/1011/2
+
+### DELETE
+DELETE http://localhost:4000/pedido/1011
+
+
