@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import { corsMiddleware } from "./middlewares/cors.js";
+import { createFacturaRouter } from "./routes/factura.js";
 import { createInsumoRouter } from "./routes/insumo.js";
 import { createListaProductoRouter } from "./routes/lista-producto.js";
 import { createListaPromocionRouter } from "./routes/lista-promocion.js";
@@ -22,6 +23,7 @@ export const createApp = ({
   listaProductoModel,
   listaPromocionModel,
   pedidoModel,
+  facturaModel,
 }) => {
   const app = express();
   app.use(json()); // Leemos nuestro body como JSON
@@ -55,6 +57,7 @@ export const createApp = ({
     createListaPromocionRouter({ listaPromocionModel }),
   );
   app.use("/pedido", createPedidoRouter({ pedidoModel }));
+  app.use("/factura", createFacturaRouter({ facturaModel }));
 
   /// CONEXION ////
 

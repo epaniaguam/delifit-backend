@@ -1,0 +1,29 @@
+### GET
+GET http://localhost:4000/factura
+
+### GET ID
+GET http://localhost:4000/factura/15
+
+### POST
+POST http://localhost:4000/factura
+Content-Type: application/json
+
+{
+  "id_pedido": 1011,
+  "id_personal": 2,
+  "fecha_recepcion": "2025-05-05"
+}
+
+
+### PATCH
+PATCH http://localhost:4000/factura/15
+Content-Type: application/json
+
+{
+  "fecha_recepcion": "2024-05-05"
+}
+
+### DELETE
+DELETE http://localhost:4000/factura/15
+
+
