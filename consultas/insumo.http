@@ -2,15 +2,15 @@
 GET http://localhost:4000/insumo
 
 ### GET rer.query
-GET http://localhost:4000/insumo?nombre=Leche
+GET http://localhost:4000/insumo?nombre=Ambrosia
 ### GET rer.query
-GET http://localhost:4000/insumo?categoria=categoria3
+GET http://localhost:4000/insumo?categoria=catedInsu3
 ### GET rer.query
 GET http://localhost:4000/insumo?visibilidad=false
 
 
 ### GET ID
-GET http://localhost:4000/insumo/16
+GET http://localhost:4000/insumo/21
 
 ### POST
 POST http://localhost:4000/insumo
@@ -20,13 +20,13 @@ Content-Type: application/json
   "img_url": "/insumo/ejemplo-insumo.png",
   "nombre": "Ambrosia",
   "cantidad": 15.0,
-  "categoria": "categoria3",
+  "id_categoria": "6",
   "medida": "kilogramo"
 }
 
 
 ### PATCH
-PATCH http://localhost:4000/insumo/16
+PATCH http://localhost:4000/insumo/22
 Content-Type: application/json
 
 {
@@ -34,6 +34,6 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:4000/insumo/16
+DELETE http://localhost:4000/insumo/22
 
 

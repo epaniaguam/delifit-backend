@@ -8,28 +8,29 @@ export class ProductoModel {
 
       if (precio) {
         const result = await client.query(
-          "SELECT * FROM producto WHERE precio_base = $1 AND visibilidad=true;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE precio_base = $1 AND visibilidad=true;",
           [precio],
         );
         return result.rows;
       }
+      // console.log("categoria:", categoria);
       if (categoria) {
         const result = await client.query(
-          "SELECT * FROM producto WHERE categoria = $1 AND visibilidad=true;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND visibilidad=true;",
           [categoria],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT * FROM producto WHERE visibilidad = $1;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad = $1;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT * FROM producto WHERE visibilidad=true;",
+        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad=true;",
       );
       return result.rows;
     } catch (error) {
@@ -45,7 +46,7 @@ export class ProductoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM producto WHERE id_producto = $1 AND visibilidad=true;",
+        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_producto = $1 AND visibilidad=true;",
         [id],
       );
       return result.rows[0];
@@ -60,7 +61,7 @@ export class ProductoModel {
   static async create({ input }) {
     let client;
 
-    const { img_url, nombre, descripcion, precio_base, categoria } = input;
+    const { img_url, nombre, descripcion, precio_base, id_categoria } = input;
     try {
       client = await pool.connect();
 
@@ -78,7 +79,7 @@ export class ProductoModel {
 
       const result = await client.query(
         "SELECT public.registrar_producto($1, $2, $3, $4, $5)",
-        [img_url, nombre, descripcion, precio_base, categoria],
+        [img_url, nombre, descripcion, precio_base, id_categoria],
       );
       return result.rows[0];
     } catch (error) {
@@ -104,13 +105,13 @@ export class ProductoModel {
 
       const dataUpdate = { ...result.rows[0], ...input };
       await client.query(
-        "UPDATE producto SET img_url=$1, nombre=$2, descripcion=$3, precio_base=$4, categoria=$5, visibilidad=$6 WHERE id_producto = $7",
+        "UPDATE producto SET img_url=$1, nombre=$2, descripcion=$3, precio_base=$4, id_categoria=$5, visibilidad=$6 WHERE id_producto = $7",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
           dataUpdate.descripcion,
           dataUpdate.precio_base,
-          dataUpdate.categoria,
+          dataUpdate.id_categoria,
           dataUpdate.visibilidad,
           id,
         ],

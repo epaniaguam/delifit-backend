@@ -13,7 +13,7 @@ export const createProductoInsumoRouter = ({ productoInsumoModel }) => {
   productoInsumoRouter.post("/", productoInsumoController.create);
   productoInsumoRouter.patch("/:id", productoInsumoController.update);
   productoInsumoRouter.delete(
-    "/:id_producto/:id_insumo",
+    "/:id_producto/:id_insumo?",
     productoInsumoController.delete,
   );
 

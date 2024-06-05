@@ -8,20 +8,22 @@ export class ProductoInsumoModel {
 
       if (id_producto) {
         const result = await client.query(
-          "SELECT * FROM ins_prod WHERE id_producto = $1;",
+          "SELECT * FROM ins_prod WHERE id_producto = $1 ORDER BY id_producto ASC;",
           [id_producto],
         );
         return result.rows;
       }
       if (id_insumo) {
         const result = await client.query(
-          "SELECT * FROM ins_prod WHERE id_insumo = $1;",
+          "SELECT * FROM ins_prod WHERE id_insumo = $1 ORDER BY id_producto ASC;",
           [id_insumo],
         );
         return result.rows;
       }
 
-      const result = await client.query("SELECT * FROM ins_prod;");
+      const result = await client.query(
+        "SELECT * FROM ins_prod ORDER BY id_producto ASC;",
+      );
       return result.rows;
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -70,17 +72,18 @@ export class ProductoInsumoModel {
   static async update({ id, input }) {
     let client;
     try {
+      // console.log("input:", input);
       client = await pool.connect();
       const result = await client.query(
         "SELECT * FROM ins_prod WHERE id_producto = $1;",
         [id],
       );
-      console.log("result:", result.rows);
       if (result.rows.length === 0) {
         return false;
       }
 
       const dataUpdate = { ...result.rows[0], ...input };
+      // console.log("dataUpdate:", dataUpdate );
 
       await client.query(
         "UPDATE ins_prod SET cantidad = $1 WHERE id_producto = $2 AND id_insumo = $3 RETURNING *;",
@@ -103,6 +106,23 @@ export class ProductoInsumoModel {
     let client;
     try {
       client = await pool.connect();
+
+      if (!id_insumo) {
+        const result = await client.query(
+          "SELECT * FROM ins_prod WHERE id_producto = $1",
+          [id_producto],
+        );
+
+        if (result.rows.length > 0) {
+          await client.query(
+            "DELETE FROM ins_prod WHERE id_producto = $1 RETURNING *;",
+            [id_producto],
+          );
+          return true;
+        }
+        return false;
+      }
+
       const result = await client.query(
         "SELECT * FROM ins_prod WHERE id_producto = $1 AND id_insumo = $2",
         [id_producto, id_insumo],

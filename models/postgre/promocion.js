@@ -1,36 +1,42 @@
 import { pool } from "../../db/conexion.js";
 
 export class PromocionModel {
-  static async getAll({ dia_promocion, nombre, visibilidad }) {
+  static async getAll({ dia_promocion, nombre, visibilidad, categoria }) {
     let client;
     try {
       client = await pool.connect();
 
+      if (categoria) {
+        const result = await client.query(
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND visibilidad=true ORDER BY id_promocion ASC;",
+          [categoria],
+        );
+        return result.rows;
+      }
       if (dia_promocion) {
         const result = await client.query(
-          "SELECT * FROM promocion WHERE dia_promocion = $1 AND visibilidad=true ;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE dia_promocion = $1 AND visibilidad=true ORDER BY id_promocion ASC;",
           [dia_promocion],
         );
-        // console.log(result.rows);
         return result.rows;
       }
       if (nombre) {
         const result = await client.query(
-          "SELECT * FROM promocion WHERE LOWER(nombre) = LOWER($1) AND visibilidad=true;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE LOWER(nombre) = LOWER($1) AND visibilidad=true ORDER BY id_promocion ASC;",
           [nombre],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT * FROM promocion WHERE visibilidad = $1;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad = $1 ORDER BY id_promocion ASC;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT * FROM promocion WHERE visibilidad=true;",
+        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad=true ORDER BY id_promocion ASC;",
       );
       return result.rows;
     } catch (error) {
@@ -46,7 +52,7 @@ export class PromocionModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM promocion WHERE id_promocion = $1 AND visibilidad=true",
+        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_promocion = $1 AND visibilidad=true",
         [id],
       );
       // console.log(result.rows);
@@ -61,13 +67,13 @@ export class PromocionModel {
 
   static async create({ input }) {
     let client;
-
+    // img_url, nombre, descripcion, precio_base, id_categoria, precio_oferta, estado_promocion, dia_promocion, fecha_inicio, fecha_fin
     const {
       img_url,
       nombre,
       descripcion,
       precio_base,
-      categoria,
+      id_categoria,
       precio_oferta,
       estado_promocion,
       dia_promocion,
@@ -96,7 +102,7 @@ export class PromocionModel {
           nombre,
           descripcion,
           precio_base,
-          categoria,
+          id_categoria,
           precio_oferta,
           estado_promocion,
           dia_promocion,
@@ -123,8 +129,7 @@ export class PromocionModel {
         "SELECT * FROM promocion WHERE id_promocion = $1",
         [id],
       );
-      // console.log("result:", result.rows);
-      // console.log("resultL:", result.rows.length);
+
       if (result.rows.length === 0) {
         return false;
       }
@@ -132,13 +137,13 @@ export class PromocionModel {
       const dataUpdate = { ...result.rows[0], ...input };
       // console.log(dataUpdate);
       await client.query(
-        "UPDATE promocion SET img_url = $1, nombre = $2, descripcion = $3, precio_base = $4, categoria = $5, precio_oferta = $6, estado_promocion = $7, dia_promocion = $8, fecha_inicio = $9, fecha_fin = $10, visibilidad = $11 WHERE id_promocion = $12",
+        "UPDATE promocion SET img_url = $1, nombre = $2, descripcion = $3, precio_base = $4, id_categoria = $5, precio_oferta = $6, estado_promocion = $7, dia_promocion = $8, fecha_inicio = $9, fecha_fin = $10, visibilidad = $11 WHERE id_promocion = $12",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
           dataUpdate.descripcion,
           dataUpdate.precio_base,
-          dataUpdate.categoria,
+          dataUpdate.id_categoria,
           dataUpdate.precio_oferta,
           dataUpdate.estado_promocion,
           dataUpdate.dia_promocion,

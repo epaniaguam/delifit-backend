@@ -1,5 +1,7 @@
 import { pool } from "../../db/conexion.js";
 
+// ESPERAR A JUAN PARA PROBAR CREATE y UPDATE de INSUMO
+
 export class InsumoModel {
   static async getAll({ nombre, categoria, visibilidad }) {
     let client;
@@ -8,28 +10,28 @@ export class InsumoModel {
 
       if (nombre) {
         const result = await client.query(
-          "SELECT * FROM insumo WHERE nombre = $1 AND visibilidad=true;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE nombre = $1 AND visibilidad=true;",
           [nombre],
         );
         return result.rows;
       }
       if (categoria) {
         const result = await client.query(
-          "SELECT * FROM insumo WHERE categoria = $1 AND visibilidad=true;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND visibilidad=true;",
           [categoria],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT * FROM insumo WHERE visibilidad = $1;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE visibilidad = $1;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT * FROM insumo WHERE visibilidad=true;",
+        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE visibilidad=true ORDER BY id_insumo ASC;",
       );
       return result.rows;
     } catch (error) {
@@ -45,7 +47,7 @@ export class InsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT * FROM insumo WHERE id_insumo = $1 AND visibilidad=true;",
+        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE id_insumo = $1 AND visibilidad=true;",
         [id],
       );
       return result.rows[0];
@@ -60,7 +62,7 @@ export class InsumoModel {
   static async create({ input }) {
     let client;
 
-    const { img_url, nombre, cantidad, categoria, medida } = input;
+    const { img_url, nombre, cantidad, medida, id_categoria } = input;
     try {
       client = await pool.connect();
 
@@ -78,9 +80,9 @@ export class InsumoModel {
 
       const result = await client.query(
         "SELECT public.registrar_insumo($1, $2, $3, $4, $5)",
-        [img_url, nombre, cantidad, categoria, medida],
+        [img_url, nombre, cantidad, medida, id_categoria],
       );
-      // return result.rows[0].registrar_insumo;
+
       return result.rows[0];
     } catch (error) {
       console.error("Error executing query", error.message);
@@ -104,12 +106,12 @@ export class InsumoModel {
       }
       const dataUpdate = { ...result.rows[0], ...input };
       await client.query(
-        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $7",
+        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, id_categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $7",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
           dataUpdate.cantidad,
-          dataUpdate.categoria,
+          dataUpdate.id_categoria,
           dataUpdate.medida,
           dataUpdate.visibilidad,
           id,

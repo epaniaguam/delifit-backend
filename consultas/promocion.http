@@ -2,9 +2,12 @@
 GET http://localhost:4000/promocion
 
 ### GET rer.query
+GET http://localhost:4000/promocion?categoria=catedProm1
+### GET rer.query
 GET http://localhost:4000/promocion?dia_promocion=miércoles
 ### GET rer.query
 GET http://localhost:4000/promocion?nombre=promocion%20por%20default
+
 ### GET rer.query
 GET http://localhost:4000/promocion?visibilidad=false
 
@@ -21,7 +24,7 @@ Content-Type: application/json
   "nombre": "Jueves de patas",
   "descripcion": "Ven con tus amigos.",
   "precio_base": "70.00",
-  "categoria": "categoria2",
+  "id_categoria": 7,
   "precio_oferta": "50.00",
   "estado_promocion": true,
   "dia_promocion": "jueves",
@@ -31,15 +34,15 @@ Content-Type: application/json
 
 
 ### PATCH
-PATCH http://localhost:4000/promocion/7
+PATCH http://localhost:4000/promocion/35
 Content-Type: application/json
 
 {
-  "fecha_fin": "2024-07-30"
+  "img_url": "https://images.unsplash.com/photo-1570786097801-b8b9531ed5cb?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }
 
 
 ### DELETE
-DELETE http://localhost:4000/promocion/7
+DELETE http://localhost:4000/promocion/35
 
 

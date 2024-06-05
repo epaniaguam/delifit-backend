@@ -6,7 +6,7 @@ export class PromocionController {
   }
 
   getAll = async (req, res) => {
-    const { dia_promocion, nombre, visibilidad } = req.query;
+    const { dia_promocion, nombre, visibilidad, categoria } = req.query;
 
     if (visibilidad !== undefined) {
       if (visibilidad !== "true" && visibilidad !== "false") {
@@ -18,6 +18,7 @@ export class PromocionController {
       dia_promocion,
       nombre,
       visibilidad,
+      categoria,
     });
     // console.log("filteredData:", filteredData);
 

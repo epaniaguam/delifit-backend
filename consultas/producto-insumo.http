@@ -7,7 +7,7 @@ GET http://localhost:4000/producto-insumo?id_producto=1
 GET http://localhost:4000/producto-insumo?id_insumo=2
 
 ### GET ID
-GET http://localhost:4000/producto-insumo/2
+GET http://localhost:4000/producto-insumo/6d
 
 ### POST
 POST http://localhost:4000/producto-insumo
@@ -18,18 +18,36 @@ Content-Type: application/json
   "id_insumo": 3,
   "cantidad": 12
 }
+### POST
+POST http://localhost:4000/producto-insumo
+Content-Type: application/json
+
+{
+  "id_producto": 6,
+  "id_insumo": 4,
+  "cantidad": 240
+}
 
 
 ### PATCH
-PATCH http://localhost:4000/producto-insumo/5
+PATCH http://localhost:4000/producto-insumo/6
+Content-Type: application/json
+
+{
+  "cantidad": 120
+}
+### PATCH
+PATCH http://localhost:4000/producto-insumo/6
 Content-Type: application/json
 
 {
   "id_insumo": 4,
-  "cantidad": 120
+  "cantidad": 20
 }
 
 ### DELETE
 DELETE http://localhost:4000/producto-insumo/5/4
+### DELETE
+DELETE http://localhost:4000/producto-insumo/6
 
 

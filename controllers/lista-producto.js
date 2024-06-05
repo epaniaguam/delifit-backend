@@ -18,6 +18,8 @@ export class ListaProductoController {
       id_pedido,
       id_producto,
     });
+    if (result.length === 0)
+      return res.status(404).json({ message: "ProductoInsumo not found" });
 
     if (result) return res.status(200).json(result);
     return res.status(404).json({ message: "Lista-producto no encontrado" });
