@@ -10,28 +10,28 @@ export class InsumoModel {
 
       if (nombre) {
         const result = await client.query(
-          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE nombre = $1 AND visibilidad=true;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, i.visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE nombre = $1 AND i.visibilidad = true;",
           [nombre],
         );
         return result.rows;
       }
       if (categoria) {
         const result = await client.query(
-          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND visibilidad=true;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, i.visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND i.visibilidad = true;",
           [categoria],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE visibilidad = $1;",
+          "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, i.visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE i.visibilidad = $1;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE visibilidad=true ORDER BY id_insumo ASC;",
+        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, i.visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE i.visibilidad = true ORDER BY id_insumo ASC;",
       );
       return result.rows;
     } catch (error) {
@@ -47,7 +47,7 @@ export class InsumoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE id_insumo = $1 AND visibilidad=true;",
+        "SELECT id_insumo, img_url, nombre, cantidad, medida, c.descripcion_categoria AS categoria, i.visibilidad FROM insumo i INNER JOIN categoria c ON i.id_categoria = c.id_categoria WHERE id_insumo = $1 AND i.visibilidad = true;",
         [id],
       );
       return result.rows[0];
@@ -106,7 +106,7 @@ export class InsumoModel {
       }
       const dataUpdate = { ...result.rows[0], ...input };
       await client.query(
-        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, id_categoria=$4, medida=$5, visibilidad=$6 WHERE id_insumo = $7",
+        "UPDATE insumo SET img_url=$1, nombre=$2, cantidad=$3, id_categoria=$4, medida=$5, visibilidad = $6 WHERE id_insumo = $7",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
@@ -142,7 +142,7 @@ export class InsumoModel {
 
       if (result.rows.length > 0) {
         await client.query(
-          "UPDATE insumo SET visibilidad=$1 WHERE id_insumo = $2",
+          "UPDATE insumo SET visibilidad = $1 WHERE id_insumo = $2",
           [false, id],
         );
         // await client.query("DELETE FROM insumo WHERE id_insumo = $1", [id]);
