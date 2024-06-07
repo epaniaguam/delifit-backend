@@ -1,10 +1,8 @@
 import cors from "cors";
 
 const ACCESS_ORIGINS = [
-  "http://localhost:1234",
-  "http://localhost:8080",
-  "http://localhost:3000",
   "http://localhost:4000",
+  "http://localhost:3000",
   "http://localhost:3001",
 ];
 
