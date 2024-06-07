@@ -8,7 +8,7 @@ export class ProductoModel {
 
       if (precio) {
         const result = await client.query(
-          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE precio_base = $1 AND visibilidad=true;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base, p.visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE precio_base = $1 AND p.visibilidad = true;",
           [precio],
         );
         return result.rows;
@@ -16,21 +16,21 @@ export class ProductoModel {
       // console.log("categoria:", categoria);
       if (categoria) {
         const result = await client.query(
-          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND visibilidad=true;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base, p.visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND p.visibilidad = true;",
           [categoria],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad = $1;",
+          "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base, p.visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = $1;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE visibilidad=true;",
+        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base, p.visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = true;",
       );
       return result.rows;
     } catch (error) {
@@ -46,7 +46,7 @@ export class ProductoModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base,visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_producto = $1 AND visibilidad=true;",
+        "SELECT id_producto, img_url, nombre, descripcion, c.descripcion_categoria AS categoria, precio_base, p.visibilidad FROM producto p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_producto = $1 AND p.visibilidad = true;",
         [id],
       );
       return result.rows[0];
@@ -105,7 +105,7 @@ export class ProductoModel {
 
       const dataUpdate = { ...result.rows[0], ...input };
       await client.query(
-        "UPDATE producto SET img_url=$1, nombre=$2, descripcion=$3, precio_base=$4, id_categoria=$5, visibilidad=$6 WHERE id_producto = $7",
+        "UPDATE producto SET img_url=$1, nombre=$2, descripcion=$3, precio_base=$4, id_categoria=$5, visibilidad = $6 WHERE id_producto = $7",
         [
           dataUpdate.img_url,
           dataUpdate.nombre,
@@ -143,10 +143,9 @@ export class ProductoModel {
 
       if (result.rows.length > 0) {
         await client.query(
-          "UPDATE producto SET visibilidad=$1 WHERE id_producto = $2",
+          "UPDATE producto SET visibilidad = $1 WHERE id_producto = $2",
           [false, id],
         );
-        // await client.query("DELETE FROM producto WHERE id_producto = $1", [id]);
         return true;
       }
       return false;
