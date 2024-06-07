@@ -47,7 +47,7 @@ export class InsumoController {
 
       return res.status(201).json(newData);
     } catch (error) {
-      if (error === "El insumo ya existe") {
+      if (error.includes("ya existe")) {
         return res.status(409).json({ message: "Insumo ya existe" });
       }
       return res.status(500).json({ error: "Error creando Insumo" });

@@ -52,7 +52,7 @@ export class ProductoController {
 
       return res.status(201).json(newData);
     } catch (error) {
-      if (error === "El producto ya existe") {
+      if (error.includes("ya existe")) {
         // console.log(error);
         return res.status(409).json({ message: "Producto ya existe" });
       }

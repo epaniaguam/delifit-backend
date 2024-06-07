@@ -48,7 +48,7 @@ export class PromocionController {
 
       res.status(201).json(newData);
     } catch (error) {
-      if (error === "Promocion ya existe") {
+      if (error.includes("ya existe")) {
         // console.log(error);
         res.status(409).json({ message: "Promocion ya existe" });
       } else {
