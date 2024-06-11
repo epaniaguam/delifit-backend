@@ -8,35 +8,35 @@ export class PromocionModel {
 
       if (categoria) {
         const result = await client.query(
-          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND p.visibilidad = true ORDER BY id_promocion ASC;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE c.descripcion_categoria = $1 AND p.visibilidad = true ORDER BY id_promocion ASC;",
           [categoria],
         );
         return result.rows;
       }
       if (dia_promocion) {
         const result = await client.query(
-          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE dia_promocion = $1 AND p.visibilidad = true ORDER BY id_promocion ASC;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE dia_promocion = $1 AND p.visibilidad = true ORDER BY id_promocion ASC;",
           [dia_promocion],
         );
         return result.rows;
       }
       if (nombre) {
         const result = await client.query(
-          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE LOWER(nombre) = LOWER($1) AND p.visibilidad = true ORDER BY id_promocion ASC;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE LOWER(nombre) = LOWER($1) AND p.visibilidad = true ORDER BY id_promocion ASC;",
           [nombre],
         );
         return result.rows;
       }
       if (visibilidad) {
         const result = await client.query(
-          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = $1 ORDER BY id_promocion ASC;",
+          "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = $1 ORDER BY id_promocion ASC;",
           [visibilidad],
         );
         return result.rows;
       }
 
       const result = await client.query(
-        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = true ORDER BY id_promocion ASC;",
+        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE p.visibilidad = true ORDER BY id_promocion ASC;",
       );
       return result.rows;
     } catch (error) {
@@ -52,7 +52,7 @@ export class PromocionModel {
     try {
       client = await pool.connect();
       const result = await client.query(
-        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_promocion = $1 AND p.visibilidad = true",
+        "SELECT id_promocion, img_url, nombre, descripcion, precio_base, precio_oferta, c.descripcion_categoria AS categoria, p.id_categoria, estado_promocion, dia_promocion, fecha_inicio, fecha_fin, p.visibilidad FROM promocion p INNER JOIN categoria c ON p.id_categoria = c.id_categoria WHERE id_promocion = $1 AND p.visibilidad = true",
         [id],
       );
       // console.log(result.rows);
