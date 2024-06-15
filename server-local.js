@@ -1,4 +1,4 @@
-import { createApp } from "./app.js";
-import { ProveedorModel } from "./models/local-storage/proveedores.js";
+import { createApp } from './app.js'
+import { ProveedorModel } from './models/local-storage/proveedores.js'
 
-createApp({ proveedoresModel: ProveedorModel });
+createApp({ proveedoresModel: ProveedorModel })

@@ -2,99 +2,99 @@
 
 export class InsumoController {
   constructor({ insumoModel }) {
-    this.insumoModel = insumoModel;
+    this.insumoModel = insumoModel
   }
 
   getAll = async (req, res) => {
-    const { nombre, categoria, visibilidad } = req.query;
+    const { nombre, categoria, visibilidad } = req.query
 
     if (visibilidad !== undefined) {
-      if (visibilidad !== "true" && visibilidad !== "false") {
-        return res.status(400).json({ message: "visibilidad debe ser bool" });
+      if (visibilidad !== 'true' && visibilidad !== 'false') {
+        return res.status(400).json({ message: 'visibilidad debe ser bool' })
       }
     }
 
     const filteredData = await this.insumoModel.getAll({
       nombre,
       categoria,
-      visibilidad,
-    });
+      visibilidad
+    })
     // console.log("filteredData:", filteredData);
 
     if (!filteredData)
-      return res.status(404).json({ message: "No insumo found" });
+      return res.status(404).json({ message: 'No insumo found' })
 
-    res.status(200).json(filteredData);
-  };
+    res.status(200).json(filteredData)
+  }
 
   getById = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params
 
-    const result = await this.insumoModel.getById({ id });
+    const result = await this.insumoModel.getById({ id })
     // console.log("result:", result);
-    if (result) return res.status(200).json(result);
-    return res.status(404).json({ message: "Insumo not found" });
-  };
+    if (result) return res.status(200).json(result)
+    return res.status(404).json({ message: 'Insumo not found' })
+  }
 
   create = async (req, res) => {
     // to do : validar datos con zod
     // const result = validateUsuario(req.body)
-    const result = req.body;
+    const result = req.body
 
     try {
-      const newData = await this.insumoModel.create({ input: result });
+      const newData = await this.insumoModel.create({ input: result })
       // console.log("newData:", newData);
 
-      return res.status(201).json(newData);
+      return res.status(201).json(newData)
     } catch (error) {
-      if (error.includes("ya existe")) {
-        return res.status(409).json({ message: "Insumo ya existe" });
+      if (error.includes('ya existe')) {
+        return res.status(409).json({ message: 'Insumo ya existe' })
       }
-      return res.status(500).json({ error: "Error creando Insumo" });
+      return res.status(500).json({ error: 'Error creando Insumo' })
     }
-  };
+  }
 
   update = async (req, res) => {
-    const { id } = req.params;
-    if (!id) return res.status(400).json({ message: "Id is required" });
-    const result = req.body;
+    const { id } = req.params
+    if (!id) return res.status(400).json({ message: 'Id is required' })
+    const result = req.body
 
     try {
       const updatedData = await this.insumoModel.update({
         id,
-        input: result,
-      });
+        input: result
+      })
       // console.log("updatedData:", updatedData);
 
       if (updatedData === false)
-        return res.status(404).json({ message: "Insumo not found" });
+        return res.status(404).json({ message: 'Insumo not found' })
 
-      return res.status(200).json(updatedData);
+      return res.status(200).json(updatedData)
     } catch (error) {
       if (error.severity) {
-        return res.status(400).json({ message: "Id format incorrect" });
+        return res.status(400).json({ message: 'Id format incorrect' })
       }
-      return res.status(500).json({ error: "Error actualizando Insumo" });
+      return res.status(500).json({ error: 'Error actualizando Insumo' })
     }
-  };
+  }
 
   delete = async (req, res) => {
-    const { id } = req.params;
-    if (!id) return res.status(400).json({ message: "Id is required" });
+    const { id } = req.params
+    if (!id) return res.status(400).json({ message: 'Id is required' })
 
     try {
-      const deletedData = await this.insumoModel.delete({ id });
+      const deletedData = await this.insumoModel.delete({ id })
       // console.log("deletedData:", deletedData);
 
       if (deletedData === false)
-        return res.status(404).json({ message: "Insumo not found" });
+        return res.status(404).json({ message: 'Insumo not found' })
 
-      res.status(200).json({ message: "Insumo deleted" });
+      res.status(200).json({ message: 'Insumo deleted' })
     } catch (error) {
       if (error.severity) {
-        return res.status(400).json({ message: "Id format incorrect" });
+        return res.status(400).json({ message: 'Id format incorrect' })
       }
-      return res.status(500).json({ error: "Error deleting Insumo" });
+      return res.status(500).json({ error: 'Error deleting Insumo' })
     }
-  };
+  }
 }

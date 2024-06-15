@@ -15,7 +15,16 @@
       "complexity": {
         "noStaticOnlyClass": "off"
       }
-      
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "trailingComma": "none",
+      "semicolons": "asNeeded",
+      "indentStyle": "space"
     }
   }
 }
